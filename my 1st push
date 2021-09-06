@@ -1,0 +1,57 @@
+//admin
+#include<iostream>
+using namespace std;
+int rno,roomNumber;
+char ac,type,stype,status;
+double rent;
+void acceptroom(int rno);
+void displayroom();
+int main()
+{
+ acceptroom(rno);
+ displayroom();
+return 0;
+}
+void acceptroom(int rno)
+{
+    roomNumber=rno;
+    for(int i=0;i<=rno;i++){
+	cout<<"Type AC/Non-AC (A/N) : ";
+	cin>>ac;
+	while(ac!='A'&& ac!='N')
+	{
+		cout<<"Please Re-Enter Type: AC/Non-AC (A/N) : ";
+		cin>>ac;
+	}
+	cout<<"Type Comfort Suite or Normal (S/N) : ";
+	cin>>type;
+	while(type!='S' && type!='N')
+	{
+		cout<<"Please Re-enter Type Comfort Suite or Normal (S/N) : ";
+		cin>>type;
+	}
+	cout<<"Type Size (B/S) : ";
+	cin>>stype;
+	while(stype!='B'&& stype!='S')
+	{
+		cout<<"Please Re-enter Type Size (B/S) : ";
+		cin>>stype;
+	}
+	cout<<"Daily Rent : ";
+	cin>>rent;
+	while(rent<0 || rent>20000)
+	{
+		cout<<"Please enter valid rent.";
+		cin>>rent;
+	}}
+	status=0;
+	cout<<"\nRoom Added Successfully!"<<endl;
+}
+
+void displayroom()
+{   cout<<"| Room No.\t|\tAC/Non-AC\t|\tType\t\t|\tStype\t\t|\tRent\t\t|\tAvailability  \t|"<<endl;
+	cout<<"| "<<roomNumber+1<<".\t\t|\t"<<ac<<"\t\t|\t"<<type<<"\t\t|\t"<<stype<<"\t\t|\t"<<rent<<"\t\t|\t";
+	if(status==0){cout<<"Available.\t|";}
+	else{cout<<"Booked.\t\t|";}
+	cout<<endl;
+}
