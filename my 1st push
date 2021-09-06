@@ -1,6 +1,42 @@
 //admin
-#include<iostream>
-using namespace std;
+struct room{
+    char type;				//COMFORT SUITE OR NORMAL ROOM
+	char stype;				//BIG SIZE OR SMALL SIZED ROOM
+	char ac;				//AC OR NON AC
+	int roomNumber;			//ROOM NUMBER
+	double rent;			//DAILY RENT OF ROOM
+	int status=0;			//ROOM IS BOOKED OR NOT
+}r[100];
+struct Customer
+{
+	string name;	   			 //CUSTOMER FULL NAME
+	string address;				//CUSTOMER ADDRESS
+	string phone;				//CONTACT NUMBER
+	int days=0;	    			//DURATION OF STAY
+	float payment_advance;		//ADVANCE PAYMENT
+	double bill=0;				//BILL AMT
+	int booking_id;				//BOOKING ID
+	int room;					//ROOM NO
+	int status;
+}c[100];
+struct Hotel
+{
+	room r[100];			//ARRAY OF ROOMS
+	Customer c[100];
+				//ARRAY OF CUSTOMERS
+	int nroom=0, ncust=0;	//NO OF ROOMS AND CUSTOMERS
+}h;
+void room_info();
+void availablity();
+void Check_in();
+void Check_out();
+void searchRoom();
+void searchCust();
+void displayRoom();
+void displayCust();
+void acceptCust();
+void Summary();
+
 int rno,roomNumber;
 char ac,type,stype,status;
 double rent;
@@ -8,8 +44,100 @@ void acceptroom(int rno);
 void displayroom();
 int main()
 {
- acceptroom(rno);
- displayroom();
+
+int main()
+{
+	char ch;
+	cout<<endl<<"\t\tWELCOME TO HOTEL MANAGMENT SYSTEM";
+	do
+	{		//MENU TO USE AS EITHER ADMIN OR WHEN A CUSTOMER ENTERS
+		cout<<endl<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+		cout<<endl<<"\t\t\t\t\t\t"
+				"MENU:\n\t\t\t\t\t\t"
+				"1.LOGIN AS ADMIN\n\t\t\t\t\t\t"
+				"2.LOGIN AS CUSTOMER\n\t\t\t\t\t\t"
+				"3.EXIT\n\t\t\t\t\t\t\n"
+				"Enter your choice:";
+        cin>>ch;
+		switch(ch)
+		{
+		case '1':
+		    char ch1;
+		    cout<<"\n\t\t\t\t\t\t"
+						"Menu:\n\t\t\t\t\t\t"
+						"1.Add database of rooms in the hotel.\n\t\t\t\t\t\t"
+						"2.Search Customer\n\t\t\t\t\t\t"
+						"3.View Statistical Reports\n\t\t\t\t\t\t"//summary
+						"4.Go back to Main Menu.\n\t\t\t\t\t\t\n"
+						"Enter your choice:";
+
+                cin>>ch1;
+				switch(ch1)
+				{
+				case '1':
+					room_info();
+					break;
+				case '2':
+					searchCust();
+					break;
+				case '3':
+					Summary();
+					break;
+				case '4':
+					break;
+				default:
+					cout<<"Invalid Choice."<<endl;
+					break;
+				}
+			cout<<"Database updated. Going back to main menu."<<endl;
+			break;
+		case '2':
+			char ch2;
+
+				//MENU 2 TO USE WHEN A CUSTOMER WANTS TO CHECK IN
+				cout<<endl<<"****************************************************************************************************************************************************************"<<endl;
+				cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~WELCOME TO HOTEL MANAGMENT SYSTEM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+				cout<<"\n\t\t\t\t\t\t"
+						"Menu:\n\t\t\t\t\t\t"
+						"1.Check Availability of rooms.\n\t\t\t\t\t\t"
+						"2.Check In.\n\t\t\t\t\t\t"
+						"3.Check Out.\n\t\t\t\t\t\t"
+						"4.Search Room\n\t\t\t\t\t\t"
+						"5.Go back to Main Menu.\n\t\t\t\t\t\t\n"
+						"Enter your choice:";
+                    cin>>ch2;
+				switch(ch2)
+				{
+				case '1':
+					availablity();
+					break;
+				case '2':
+					Check_in();
+					break;
+				case '3':
+					Check_out();
+					break;
+				case '4':
+					searchRoom();
+					break;
+                case '5':
+					break;
+				default:
+					cout<<"Invalid Choice."<<endl;
+					break;
+				}
+
+        case '3':
+			cout<<"Thank you!";
+			exit(0);
+		default:
+			cout<<"Invalid Choice."<<endl;
+			break;
+		}
+	}while(ch!='3');
+	return 0;
+}
+
 return 0;
 }
 void acceptroom(int rno)
